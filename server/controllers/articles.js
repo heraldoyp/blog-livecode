@@ -88,7 +88,7 @@ class ArticleController{
       })
   }
   static remove(req, res){
-    Article.remove({'_id': req.params._id})
+    Article.remove({'_id': req.params.idAuthor})
       .then(data=>{
         res.status(200).send({message: 'data has been deleted', data: data})
       })

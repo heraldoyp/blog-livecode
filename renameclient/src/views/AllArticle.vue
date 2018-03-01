@@ -2,8 +2,7 @@
   <div>
     <h1>All Article</h1>
     <div v-for="article in articles" :key="article._id">
-
-      <div class="card" style="width: 18rem;">
+      <div class="card text-left" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">{{article.title}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{article.category}}</h6>
@@ -33,6 +32,8 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    // this.$store.dispatch('getAllArticle')
+    // this.articles = this.$store.state.articles
   }
 }
 </script>

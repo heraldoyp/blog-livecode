@@ -9,7 +9,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <router-link to="/home"><p class="nav-link" href="#">Home <span class="sr-only">(current)</span></p></router-link>
+            <div v-if="isLogin === 'false'">
+              <router-link to="/home"><p class="nav-link" href="#">Home <span class="sr-only">(current)</span></p></router-link>
+            </div>
           </li>
           <li class="nav-item">
             <router-link to="/about"><p class="nav-link" href="#">Article</p></router-link>
@@ -21,11 +23,12 @@
           </div>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" v-model="category" aria-label="Search">
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="button" @click="searchCategory">Search</button>
+        </form>
           <div v-if="isLogin === 'true'">
             <button class="btn btn-outline-danger my-2 my-sm-0" type="button" @click="logOut">LogOut</button>
           </div>
-        </form>
       </div>
     </nav>
 
@@ -77,6 +80,7 @@ export default {
         category: '',
         author: ''
       },
+      category:'',
       isLogin: ''
     }
   },
@@ -109,6 +113,16 @@ export default {
         })
         .catch(error=>{
           console.log(error)
+        })
+    },
+    searchCategory(){
+      console.log(this.category)
+      this.$http.get('/articles/category/' + this.category)
+        .then(response => {
+
+        })
+        .catch(error => {
+          
         })
     }
   }
