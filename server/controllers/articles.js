@@ -4,6 +4,7 @@ const User = require('../models/users')
 class ArticleController{
   static findAll(req, res) {
     Article.find()
+    .populate('author')
       .then(data => {
         res.status(200).send({message: 'data article found', data: data})
       })
@@ -14,6 +15,7 @@ class ArticleController{
   
   static findOne (req, res) {
     Article.findOne({'author': req.params.idAuthor})
+    .populate('author')
       .then(data=>{
         res.status(200).send({message: "data has found", data: data})
       })
@@ -21,6 +23,7 @@ class ArticleController{
         res.status(500).send({message: "data not found", error: error})
       })
   }
+
   static create (req, res) {
     let data = {
       title: req.body.title,

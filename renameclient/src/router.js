@@ -24,11 +24,11 @@ export default new Router({
           path: '',
           component: AllArticle
         },
-        // {
-        //   path: ':idArticle',
-        //   component: 'ArticleDetail',
-        //   props: true
-        // }
+        {
+          path: ':idArticle',
+          component: ArticleDetail,
+          props: true
+        }
       ]
     }
   ]

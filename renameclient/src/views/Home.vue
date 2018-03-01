@@ -2,7 +2,6 @@
   <div id="home">
     <div class="row">
       <div class="col-sm-8 offset-sm-2">
-         Copy
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Username</label>
