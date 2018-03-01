@@ -50,6 +50,7 @@ export default {
           this.isLogin = 'true'
           swal('Login Success', '', 'success')
           this.$router.push('/about')
+          window.location.href = window.location.href
         })
         .catch(error=>{
           console.log(error)

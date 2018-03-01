@@ -14,7 +14,7 @@ class ArticleController{
   }
   
   static findOne (req, res) {
-    Article.findOne({'author': req.params.idAuthor})
+    Article.findOne({'_id': req.params.idArticle})
     .populate('author')
       .then(data=>{
         res.status(200).send({message: "data has found", data: data})

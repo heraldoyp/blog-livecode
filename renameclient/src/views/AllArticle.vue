@@ -2,7 +2,7 @@
   <div>
     <h1>All Article</h1>
     <div v-for="article in articles" :key="article._id">
-      {{articles}}
+
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">{{article.title}}</h5>
