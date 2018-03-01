@@ -28,11 +28,16 @@ class UserController{
   }
 
   static signIn (req, res){
-    User.findOne({'_id': req.params.idUser})
+    User.findOne({'username': req.body.username})
       .then(data=>{
-        jwt.sign({data: data}, 'heraldoyp', function(err, token){
-          res.status(200).send({message: 'signedIn', data: data, token: token})
-        })
+        if(data){
+          jwt.sign({data: data}, 'heraldoyp', function(err, token){
+            res.status(200).send({message: 'signedIn', data: data, token: token})
+          })
+        }else{
+          res.status(404).send({message: "not found", data: data})
+        }
+        
       })
       .catch(error=>{
         res.status(500).send({message: 'signin error', error: error})

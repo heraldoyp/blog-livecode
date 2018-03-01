@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+Vue.prototype.$http = axios.create({
+  baseURL: 'http://localhost:3000'
+})
 Vue.config.productionTip = false
 
 new Vue({

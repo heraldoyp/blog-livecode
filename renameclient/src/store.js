@@ -8,9 +8,16 @@ export default new Vuex.Store({
 
   },
   mutations: {
+  loggedIn (state, payload) {
 
+    }
   },
   actions: {
-
+    storeRegister ({commit}) {
+      this.$http.post('/users/signin')
+        .then(response=>{
+          commit('loggedIn' ,response.data.data)
+        })
+    }
   }
 })

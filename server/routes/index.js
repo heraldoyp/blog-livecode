@@ -9,8 +9,8 @@ const authentication = require('../helpers/authentication')
 //   res.send({message: 'ini dari get'})
 // });
 router.get('/users', User.findAll)
-router.post('/users', User.register)
-router.post('/users/:idUser', User.signIn)
+router.post('/users/register', User.register)
+router.post('/users/signin', User.signIn)
 
 router.get('/articles/:idArticle', Article.findOne)
 router.post('/articles', Article.create)
