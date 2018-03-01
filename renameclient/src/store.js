@@ -5,18 +5,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    articles: []
   },
   mutations: {
-  loggedIn (state, payload) {
-
+    allArticle (state, payload) {
+      state.articles = payload
     }
   },
   actions: {
-    storeRegister ({commit}) {
-      this.$http.post('/users/signin')
+    getAllArticle ({commit}) {
+      this.$http.get('/articles')
         .then(response=>{
-          commit('loggedIn' ,response.data.data)
+          commit('allArticle', response.data.data)
+        })
+        .catch(error => {
+          console.log(error)
         })
     }
   }

@@ -2,6 +2,16 @@ const Article = require('../models/articles')
 const User = require('../models/users')
 
 class ArticleController{
+  static findAll(req, res) {
+    Article.find()
+      .then(data => {
+        res.status(200).send({message: 'data article found', data: data})
+      })
+      .catch(error => { 
+        res.status(404).send({message: 'data not found', error: error})
+      })
+  }
+  
   static findOne (req, res) {
     Article.findOne({'author': req.params.idAuthor})
       .then(data=>{

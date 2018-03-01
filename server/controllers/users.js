@@ -16,7 +16,8 @@ class UserController{
   static register (req, res) {
     let data = {
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      ArticleList: [],
     }
     User.create(data)
       .then(data=>{

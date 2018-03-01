@@ -16,7 +16,8 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" @click="signIn">Submit</button>
+          <button type="submit" class="btn btn-primary" @click="register">Register</button>
         </form>
       </div>      
     </div>
@@ -28,10 +29,50 @@ export default {
   name: 'home',
   data () {
     return {
+      isLogin: '',
       user: {
         username: '',
         password: ''
       }
+    }
+  },
+  methods: {
+    signIn () {
+      let data = {
+        username: this.user.username,
+        password: this.user.password
+      }
+      this.$http.post('/users/signin', data)
+        .then(response=>{
+          console.log(response.data.data)
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('UserId', response.data.data._id)
+          localStorage.setItem('isLogin', 'true')
+          this.isLogin = 'true'
+          swal('Login Success', '', 'success')
+          this.$router.push('/about')
+        })
+        .catch(error=>{
+          console.log(error)
+          swal('Please Register', "youre not registered yet", 'error')
+        })
+    },
+    register () {
+      let data = {
+        username: this.user.username,
+        password: this.user.password
+      }
+      this.$http.post('/users/register', data)
+        .then(response=>{
+          console.log(response.data.data)
+          swal('Register Success', '', 'success')
+          this.$router.push('/')
+          // window.location.href = window.location.href
+        })
+        .catch(error=>{
+          console.log(error)
+          swal('Register faile', '', 'error')
+        })
     }
   }
 }

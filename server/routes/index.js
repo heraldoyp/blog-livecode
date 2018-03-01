@@ -12,6 +12,7 @@ router.get('/users', User.findAll)
 router.post('/users/register', User.register)
 router.post('/users/signin', User.signIn)
 
+router.get('/articles', Article.findAll)
 router.get('/articles/:idArticle', Article.findOne)
 router.post('/articles', Article.create)
 router.put('/articles/:idArticle', Article.update)
